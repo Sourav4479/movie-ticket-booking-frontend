@@ -1,38 +1,76 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.chat-launcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 9999;
+    background: orange;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 32px rgba(0, 0, 0, 0.16);
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
+  .chat-launcher:before, .chat-launcher:after {
+    font-family: FontAwesome;
+    font-size: 34px;
+    position: absolute;
+    -webkit-transition: transform 180ms linear, opacity 130ms linear;
+    transition: transform 180ms linear, opacity 130ms linear;
+  }
+  
+  .chat-launcher:hover {
+    background: #ffb329;
+  }
+  .chat-launcher.active:before {
+    opacity: 0;
+    -webkit-transform: rotate(70deg) scale(0);
+    transform: rotate(70deg) scale(0);
+  }
+  .chat-launcher.active:after {
+    opacity: 1;
+    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  .chat-wrapper {
+    height: 430px;
+    width: 385px;
+    display: block;
+    border-radius: 5px;
+    background: #ebebeb;
+    position: fixed;
+    right: 20px;
+    bottom: 110px;
+    z-index: 999;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 22px rgba(0, 0, 0, 0.16);
+    -webkit-transition: transform 400ms ease;
+    transition: transform 400ms ease;
+    -webkit-transform: translateY(130%);
+    transform: translateY(130%);
   }
-}
+  .chat-wrapper:before {
+    height: 3%;
+    padding: 4%;
+    font-size: 1.1em;
+    line-height: 1em;
+    display: block;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: #666;
+    color: white;
+    content: attr(data-headline);
+  }
+  .chat-wrapper iframe {
+    width: 94%;
+    height: 84%;
+    border: 0;
+    border-radius: 5px;
+    padding: 3%;
+    overflow: hidden;
+  }
+  .chat-wrapper.is-open {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  
